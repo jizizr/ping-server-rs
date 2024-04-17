@@ -64,7 +64,6 @@ where
             }
         }
     }
-    println!("read_from_client terminated");
 }
 
 /// 写给客户端
@@ -76,11 +75,9 @@ async fn write_to_client(writer: OwnedWriteHalf, mut msg_rx: mpsc::Receiver<Stri
             eprintln!("write to client failed: {}", e);
             break;
         }
-        // 确保数据被发送到客户端
         if let Err(e) = buf_writer.flush().await {
             eprintln!("failed to flush write buffer: {}", e);
             break;
         }
-        println!("write to client: {}", str);
     }
 }
