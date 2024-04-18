@@ -1,6 +1,6 @@
 use super::BoxError;
-use crate::handler::Answer;
 use futures::stream::{FuturesUnordered, StreamExt};
+use ping_server_rs::model::Answer;
 use rand::random;
 use std::net::IpAddr;
 use surge_ping::{Client, Config, PingIdentifier, PingSequence, ICMP};
