@@ -2,7 +2,7 @@ pub mod model {
     use serde::{Deserialize, Serialize};
     use std::time::Duration;
 
-    #[derive(Debug, Deserialize, Serialize)]
+    #[derive(Default, Debug, Deserialize, Serialize)]
     pub struct Target {
         pub method: String,
         pub host: String,
