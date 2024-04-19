@@ -43,8 +43,8 @@ where
     let mut buf = String::new();
     loop {
         match buf_reader.read_line(&mut buf).await {
-            Err(_e) => {
-                eprintln!("read from client error");
+            Err(e) => {
+                eprintln!("{}", e.to_string());
                 break;
             }
             // 遇到了EOF
