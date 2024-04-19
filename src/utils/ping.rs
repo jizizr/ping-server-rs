@@ -16,13 +16,20 @@ lazy_static::lazy_static! {
 
 const PAYLOAD: [u8; 56] = [0; 56];
 
-async fn tcping_once(host: (IpAddr, u16), timeout_duration: Duration) -> Result<Duration, BoxError> {
+async fn tcping_once(
+    host: (IpAddr, u16),
+    timeout_duration: Duration,
+) -> Result<Duration, BoxError> {
     let start = Instant::now();
     let _ = timeout(timeout_duration, TcpStream::connect(host)).await?;
     Ok(start.elapsed())
 }
 
-pub async fn tcping(host: (IpAddr, u16), timeout_duration: Duration, times: u16) -> Result<Answer, BoxError> {
+pub async fn tcping(
+    host: (IpAddr, u16),
+    timeout_duration: Duration,
+    times: u16,
+) -> Result<Answer, BoxError> {
     let mut futures = FuturesUnordered::new();
     let mut answer = Answer::new();
 
