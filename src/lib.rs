@@ -2,7 +2,7 @@ pub mod model {
     use serde::{Deserialize, Serialize};
     use std::time::Duration;
 
-    #[derive(Default, Debug, Deserialize, Serialize)]
+    #[derive(Default, Clone, PartialEq, Eq, Debug, Deserialize, Serialize)]
     pub struct Target {
         pub method: String,
         pub host: String,
@@ -10,7 +10,7 @@ pub mod model {
         pub record_type: String,
     }
 
-    #[derive(Debug, Deserialize, Serialize)]
+    #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
     pub struct Answer {
         pub error: Option<String>,
         pub success: u16,
