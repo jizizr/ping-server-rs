@@ -28,6 +28,10 @@ async fn msg_handler(raw_msg: String) -> Result<Answer, BoxError> {
 pub async fn handler(raw_msg: String) -> String {
     match msg_handler(raw_msg).await {
         Ok(msg) => serde_json::to_string(&msg).unwrap(),
-        Err(e) => e.to_string(),
+        Err(e) => {
+            let mut msg = Answer::new();
+            msg.error = Some(e.to_string());
+            serde_json::to_string(&msg).unwrap()
+        }
     }
 }
