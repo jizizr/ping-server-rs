@@ -41,13 +41,13 @@ pub mod model {
             self.fail += 1;
         }
 
-        pub fn over(mut self) -> Self {
+        pub fn over(mut self, error_msg: String) -> Self {
             if self.success != 0 {
                 self.avg_time = self.total_time as f32 / self.success as f32;
                 let total = self.success + self.fail;
                 self.loss = self.fail as f32 / total as f32 * 100.0;
             } else {
-                self.error = Some("TimeOut".to_string());
+                self.error = Some(error_msg);
             }
             self
         }
