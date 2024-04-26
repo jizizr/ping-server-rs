@@ -4,7 +4,7 @@ use ping_server_rs::model::{Answer, Target};
 async fn msg_handler(raw_msg: String) -> Result<Answer, BoxError> {
     let msg = serde_json::from_str::<Target>(&raw_msg)?;
     let timeout_duration = std::time::Duration::from_secs(1);
-    let timeout_duration_http = std::time::Duration::from_secs(2);
+    let timeout_duration_http = std::time::Duration::from_secs(3);
     match msg.method.as_str() {
         "ping" => {
             let ip = dns::parse2ip(&msg.host, msg.record_type.parse()?).await?;
